@@ -1,0 +1,20 @@
+{
+  "name": "clocktower-nexus",
+  "private": true,
+  "packageManager": "npm@10.9.3",
+  "engines": {
+    "node": "^22.0.0",
+    "npm": "^10.0.0"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node -e \"console.log('Root dev workspace orchestration will be added in Task 1.1.4.')\"",
+    "build": "node -e \"console.log('Root build workspace orchestration will be added in Task 1.1.4.')\"",
+    "test": "node -e \"console.log('Root test workspace orchestration will be added in Task 1.1.4.')\"",
+    "lint": "node -e \"console.log('Root lint workspace orchestration will be added in Task 1.1.4.')\"",
+    "typecheck": "node -e \"console.log('Root typecheck workspace orchestration will be added in Task 1.1.4.')\""
+  }
+}
