@@ -1,0 +1,6 @@
+{
+  "name": "@clocktower-nexus/protocol",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Shared transport contract workspace."
+}
