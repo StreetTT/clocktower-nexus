@@ -1,0 +1,8 @@
+{
+  "extends": "../../tsconfig.web.json",
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "../../node_modules/.cache/typescript/storyteller-console.tsbuildinfo"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

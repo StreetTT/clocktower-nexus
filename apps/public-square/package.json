@@ -1,6 +1,7 @@
 {
   "name": "@clocktower-nexus/public-square",
   "private": true,
+  "type": "module",
   "version": "0.0.0",
   "description": "Public Town Square display application workspace."
 }

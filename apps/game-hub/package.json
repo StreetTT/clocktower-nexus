@@ -1,6 +1,7 @@
 {
   "name": "@clocktower-nexus/game-hub",
   "private": true,
+  "type": "module",
   "version": "0.0.0",
   "description": "Server-authoritative game hub backend workspace."
 }

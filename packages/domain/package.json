@@ -1,6 +1,7 @@
 {
   "name": "@clocktower-nexus/domain",
   "private": true,
+  "type": "module",
   "version": "0.0.0",
   "description": "Canonical game state and domain logic workspace."
 }

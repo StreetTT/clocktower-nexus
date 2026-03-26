@@ -1,0 +1,13 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./apps/storyteller-console" },
+    { "path": "./apps/public-square" },
+    { "path": "./apps/game-hub" },
+    { "path": "./packages/domain" },
+    { "path": "./packages/protocol" },
+    { "path": "./packages/script-import" },
+    { "path": "./packages/script-normalization" },
+    { "path": "./packages/script-compatibility" }
+  ]
+}
