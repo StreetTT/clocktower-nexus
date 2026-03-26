@@ -10,6 +10,9 @@
     "apps/*",
     "packages/*"
   ],
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  },
   "scripts": {
     "dev": "node -e \"console.log('Root dev workspace orchestration will be added in Task 1.1.4.')\"",
     "build": "node -e \"console.log('Root build workspace orchestration will be added in Task 1.1.4.')\"",
