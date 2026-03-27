@@ -1,5 +1,5 @@
-import type { DomainPackageMarker } from "@clocktower-nexus/domain";
+import type { DomainPackageMarker } from '@clocktower-nexus/domain';
 
 export interface StorytellerConsolePlaceholder {
-  readonly domainPackage: DomainPackageMarker["packageName"];
+  readonly domainPackage: DomainPackageMarker['packageName'];
 }

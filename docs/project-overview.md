@@ -16,7 +16,7 @@ This overview is intentionally opinionated. It is meant to reduce drift, not jus
 
 ## Project summary
 
-`clocktower-nexus` is a new self-hosted web application for running *Blood on the Clocktower* in person with a private Storyteller console and a shared public Town Square display.
+`clocktower-nexus` is a new self-hosted web application for running _Blood on the Clocktower_ in person with a private Storyteller console and a shared public Town Square display.
 
 The project is inspired by tools such as Townsquare and Pocket Grimoire, but it is not designed as a direct integration of those codebases. Instead, it is a fresh system built around the specific product shape we want:
 

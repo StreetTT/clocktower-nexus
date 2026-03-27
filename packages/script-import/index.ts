@@ -1,3 +1,3 @@
 export interface ScriptImportPackageMarker {
-  readonly packageName: "script-import";
+  readonly packageName: 'script-import';
 }

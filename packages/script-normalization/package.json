@@ -7,7 +7,7 @@
   "scripts": {
     "build": "node -e \"console.log('Script normalization package build wiring will be added once package outputs are defined.')\"",
     "test": "node -e \"console.log('Script normalization package tests will be added once normalization behavior exists.')\"",
-    "lint": "node -e \"console.log('Script normalization package lint wiring will be added in Task 1.1.5.')\"",
+    "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc -p tsconfig.json"
   }
 }

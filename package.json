@@ -11,13 +11,18 @@
     "packages/*"
   ],
   "devDependencies": {
-    "typescript": "^5.0.0"
+    "eslint": "^10.1.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.57.2"
   },
   "scripts": {
     "dev": "npm run dev --workspace @clocktower-nexus/storyteller-console --workspace @clocktower-nexus/public-square --workspace @clocktower-nexus/game-hub --if-present",
     "build": "npm run build --workspaces --if-present",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "typecheck": "npm run typecheck --workspaces --if-present"
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "format": "prettier . --write --ignore-unknown",
+    "format:check": "prettier . --check --ignore-unknown"
   }
 }
