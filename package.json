@@ -14,10 +14,10 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "dev": "node -e \"console.log('Root dev workspace orchestration will be added in Task 1.1.4.')\"",
-    "build": "node -e \"console.log('Root build workspace orchestration will be added in Task 1.1.4.')\"",
-    "test": "node -e \"console.log('Root test workspace orchestration will be added in Task 1.1.4.')\"",
-    "lint": "node -e \"console.log('Root lint workspace orchestration will be added in Task 1.1.4.')\"",
-    "typecheck": "node -e \"console.log('Root typecheck workspace orchestration will be added in Task 1.1.4.')\""
+    "dev": "npm run dev --workspace @clocktower-nexus/storyteller-console --workspace @clocktower-nexus/public-square --workspace @clocktower-nexus/game-hub --if-present",
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
   }
 }
