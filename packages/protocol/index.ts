@@ -1,3 +1,3 @@
 export interface ProtocolPackageMarker {
-  readonly packageName: "protocol";
+  readonly packageName: 'protocol';
 }

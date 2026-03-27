@@ -1,3 +1,3 @@
 export interface ScriptNormalizationPackageMarker {
-  readonly packageName: "script-normalization";
+  readonly packageName: 'script-normalization';
 }

@@ -1,3 +1,3 @@
 export interface DomainPackageMarker {
-  readonly packageName: "domain";
+  readonly packageName: 'domain';
 }
