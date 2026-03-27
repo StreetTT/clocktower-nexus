@@ -3,5 +3,12 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
-  "description": "Server-authoritative game hub backend workspace."
+  "description": "Server-authoritative game hub backend workspace.",
+  "scripts": {
+    "dev": "node -e \"console.log('Game hub dev server wiring will be added in Task 1.3.1.')\"",
+    "build": "node -e \"console.log('Game hub build wiring will be added alongside the backend scaffold.')\"",
+    "test": "node -e \"console.log('Game hub tests will be added once backend behavior exists.')\"",
+    "lint": "node -e \"console.log('Game hub lint wiring will be added in Task 1.1.5.')\"",
+    "typecheck": "tsc -p tsconfig.json"
+  }
 }

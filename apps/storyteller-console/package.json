@@ -3,5 +3,12 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
-  "description": "Private Storyteller console application workspace."
+  "description": "Private Storyteller console application workspace.",
+  "scripts": {
+    "dev": "node -e \"console.log('Storyteller console dev server wiring will be added in a later app scaffold task.')\"",
+    "build": "node -e \"console.log('Storyteller console build wiring will be added in a later app scaffold task.')\"",
+    "test": "node -e \"console.log('Storyteller console tests will be added in a later app scaffold task.')\"",
+    "lint": "node -e \"console.log('Storyteller console lint wiring will be added in Task 1.1.5.')\"",
+    "typecheck": "tsc -p tsconfig.json"
+  }
 }

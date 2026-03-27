@@ -3,5 +3,11 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
-  "description": "Script import helper workspace."
+  "description": "Script import helper workspace.",
+  "scripts": {
+    "build": "node -e \"console.log('Script import package build wiring will be added once package outputs are defined.')\"",
+    "test": "node -e \"console.log('Script import package tests will be added once import behavior exists.')\"",
+    "lint": "node -e \"console.log('Script import package lint wiring will be added in Task 1.1.5.')\"",
+    "typecheck": "tsc -p tsconfig.json"
+  }
 }
