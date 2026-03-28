@@ -5,6 +5,21 @@ type ApiRequestSection<TKey extends 'params' | 'query' | 'body', TValue> =
     ? Record<never, never>
     : { readonly [K in TKey]: TValue };
 
+type ApiRequestShapeSchemaSection<
+  TKey extends 'params' | 'query' | 'body',
+  TSchema extends z.ZodTypeAny | undefined,
+> = [TSchema] extends [z.ZodTypeAny]
+  ? { [K in TKey]: TSchema }
+  : Record<never, never>;
+
+type ApiRequestSchemaShape<
+  TParamsSchema extends z.ZodTypeAny | undefined,
+  TQuerySchema extends z.ZodTypeAny | undefined,
+  TBodySchema extends z.ZodTypeAny | undefined,
+> = ApiRequestShapeSchemaSection<'params', TParamsSchema> &
+  ApiRequestShapeSchemaSection<'query', TQuerySchema> &
+  ApiRequestShapeSchemaSection<'body', TBodySchema>;
+
 /**
  * Shared transport helper for endpoint-specific HTTP request shapes.
  */
@@ -28,19 +43,11 @@ export function createApiRequestShapeSchema<
   readonly query?: TQuerySchema;
   readonly body?: TBodySchema;
 }) {
-  const shape: Record<string, z.ZodTypeAny> = {};
-
-  if (options.params) {
-    shape.params = options.params;
-  }
-
-  if (options.query) {
-    shape.query = options.query;
-  }
-
-  if (options.body) {
-    shape.body = options.body;
-  }
+  const shape = {
+    ...(options.params ? { params: options.params } : {}),
+    ...(options.query ? { query: options.query } : {}),
+    ...(options.body ? { body: options.body } : {}),
+  } as ApiRequestSchemaShape<TParamsSchema, TQuerySchema, TBodySchema>;
 
   return z.object(shape).strict();
 }
