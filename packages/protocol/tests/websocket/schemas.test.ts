@@ -9,6 +9,11 @@ import {
 } from '../../websocket.js';
 
 describe('WebSocket protocol schemas', () => {
+  if (false) {
+    // @ts-expect-error Projection update streams are limited to storyteller or public.
+    createProjectionUpdateMessageSchema(z.object({ phase: z.string() }), z.literal('spectator'));
+  }
+
   it('parses a valid connect message', () => {
     expect(
       connectMessageSchema.parse({
