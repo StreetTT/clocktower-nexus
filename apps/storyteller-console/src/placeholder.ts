@@ -18,6 +18,7 @@ import type {
   ApiRequestShape,
   ApiSuccessEnvelope,
 } from '@clocktower-nexus/protocol/http';
+import type { ConnectMessage } from '@clocktower-nexus/protocol/websocket';
 
 const storytellerConsoleSessionId: SessionId = {
   kind: 'session',
@@ -81,6 +82,14 @@ export const storytellerConsoleBootstrapResponse: ApiSuccessEnvelope<{
   },
 };
 
+export const storytellerConsoleConnectMessage: ConnectMessage = {
+  type: 'connect',
+  requestId: 'storyteller-connect-request',
+  sessionId: storytellerConsoleSessionId.value,
+  audience: 'storyteller',
+  lastKnownRevision: storytellerConsolePlaceholderSession.revision,
+};
+
 export interface StorytellerConsolePlaceholder {
   readonly domainPackage: DomainPackageMarker['packageName'];
   readonly sessionIdKind: SessionId['kind'];
@@ -91,4 +100,5 @@ export interface StorytellerConsolePlaceholder {
   readonly setPlayerNameCommandType: typeof PLAYER_COMMANDS.setPlayerName;
   readonly bootstrapRequest: typeof storytellerConsoleBootstrapRequest;
   readonly bootstrapResponse: typeof storytellerConsoleBootstrapResponse;
+  readonly connectMessage: typeof storytellerConsoleConnectMessage;
 }
