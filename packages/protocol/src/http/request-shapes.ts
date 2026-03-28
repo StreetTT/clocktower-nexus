@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
-type ApiRequestSection<TKey extends 'params' | 'query' | 'body', TValue> =
-  [TValue] extends [undefined]
-    ? Record<never, never>
-    : { readonly [K in TKey]: TValue };
+type ApiRequestSection<TKey extends 'params' | 'query' | 'body', TValue> = [
+  TValue,
+] extends [undefined]
+  ? Record<never, never>
+  : { readonly [K in TKey]: TValue };
 
 type ApiRequestShapeSchemaSection<
   TKey extends 'params' | 'query' | 'body',
