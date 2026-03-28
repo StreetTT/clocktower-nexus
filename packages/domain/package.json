@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "node -e \"console.log('Domain package build wiring will be added once package outputs are defined.')\"",
-    "test": "node -e \"console.log('Domain package tests will be added in the domain test harness task.')\"",
+    "test": "vitest run",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc -p tsconfig.json"
   }
