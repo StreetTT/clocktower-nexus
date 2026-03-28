@@ -38,6 +38,9 @@ export type {
   SessionRevision,
 } from './state.js';
 
+/**
+ * Placeholder marker for the domain package entrypoint.
+ */
 export interface DomainPackageMarker {
   readonly packageName: 'domain';
 }
