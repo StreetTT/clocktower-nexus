@@ -4,6 +4,10 @@
   "type": "module",
   "version": "0.0.0",
   "description": "Public Town Square display application workspace.",
+  "dependencies": {
+    "@clocktower-nexus/protocol": "*",
+    "zod": "^4.1.11"
+  },
   "scripts": {
     "dev": "node -e \"console.log('Public square dev server wiring will be added in a later app scaffold task.')\"",
     "build": "node -e \"console.log('Public square build wiring will be added in a later app scaffold task.')\"",
