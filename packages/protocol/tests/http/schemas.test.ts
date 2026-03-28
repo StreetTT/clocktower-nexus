@@ -11,9 +11,9 @@ import {
 describe('HTTP protocol schemas', () => {
   if (false) {
     // @ts-expect-error Request shapes with params schemas require params at the type level.
-    const invalidRequest: import('../../http.js').ApiRequestShape<
-      { readonly sessionId: string }
-    > = {};
+    const invalidRequest: import('../../http.js').ApiRequestShape<{
+      readonly sessionId: string;
+    }> = {};
 
     expect(invalidRequest).toBeUndefined();
 
