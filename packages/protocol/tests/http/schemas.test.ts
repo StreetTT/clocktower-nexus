@@ -2,12 +2,22 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 
 import {
+  createApiRequestShapeSchema,
   createApiErrorEnvelopeSchema,
   createApiResponseEnvelopeSchema,
   createApiSuccessEnvelopeSchema,
 } from '../../http.js';
 
 describe('HTTP protocol schemas', () => {
+  if (false) {
+    // @ts-expect-error Request shapes with params schemas require params at the type level.
+    const invalidRequest: import('../../http.js').ApiRequestShape<
+      { readonly sessionId: string }
+    > = {};
+
+    expect(invalidRequest).toBeUndefined();
+  }
+
   it('parses a success envelope built from a caller-supplied payload schema', () => {
     const successEnvelopeSchema = createApiSuccessEnvelopeSchema(
       z.object({
@@ -71,5 +81,42 @@ describe('HTTP protocol schemas', () => {
         },
       }).success,
     ).toBe(true);
+  });
+
+  it('requires request sections that are configured in the runtime schema', () => {
+    const requestShapeSchema = createApiRequestShapeSchema({
+      params: z.object({
+        sessionId: z.string(),
+      }),
+      query: z.object({
+        role: z.literal('storyteller'),
+      }),
+    });
+
+    expect(
+      requestShapeSchema.safeParse({
+        query: {
+          role: 'storyteller',
+        },
+      }).success,
+    ).toBe(false);
+
+    expect(
+      requestShapeSchema.parse({
+        params: {
+          sessionId: 'session-1',
+        },
+        query: {
+          role: 'storyteller',
+        },
+      }),
+    ).toEqual({
+      params: {
+        sessionId: 'session-1',
+      },
+      query: {
+        role: 'storyteller',
+      },
+    });
   });
 });
