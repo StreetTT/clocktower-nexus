@@ -1,3 +1,11 @@
+export {
+  nonEmptyTransportStringSchema,
+  parseWithSchema,
+  requestIdSchema,
+  revisionSchema,
+  safeParseWithSchema,
+  sessionIdSchema,
+} from './src/shared/index.js';
 export type {
   ApiError,
   ApiErrorEnvelope,
@@ -5,6 +13,15 @@ export type {
   ApiResponseEnvelope,
   ApiResponseMeta,
   ApiSuccessEnvelope,
+} from './http.js';
+export {
+  apiErrorSchema,
+  apiResponseMetaSchema,
+  createApiErrorEnvelopeSchema,
+  createApiErrorSchema,
+  createApiRequestShapeSchema,
+  createApiResponseEnvelopeSchema,
+  createApiSuccessEnvelopeSchema,
 } from './http.js';
 export type {
   ConnectMessage,
@@ -18,6 +35,19 @@ export type {
   WebSocketClientMessage,
   WebSocketMessage,
   WebSocketServerMessage,
+} from './websocket.js';
+export {
+  connectMessageSchema,
+  connectedMessageSchema,
+  createProjectionUpdateMessageSchema,
+  createWebSocketMessageSchema,
+  createWebSocketServerMessageSchema,
+  projectionStreamSchema,
+  socketAudienceSchema,
+  socketErrorMessageSchema,
+  subscribeMessageSchema,
+  subscribedMessageSchema,
+  webSocketClientMessageSchema,
 } from './websocket.js';
 
 /**

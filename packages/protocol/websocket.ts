@@ -1,3 +1,16 @@
+export {
+  connectMessageSchema,
+  connectedMessageSchema,
+  createProjectionUpdateMessageSchema,
+  createWebSocketMessageSchema,
+  createWebSocketServerMessageSchema,
+  projectionStreamSchema,
+  socketAudienceSchema,
+  socketErrorMessageSchema,
+  subscribeMessageSchema,
+  subscribedMessageSchema,
+  webSocketClientMessageSchema,
+} from './src/websocket/index.js';
 export type {
   ConnectMessage,
   ConnectedMessage,

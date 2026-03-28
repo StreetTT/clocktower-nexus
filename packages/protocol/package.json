@@ -9,9 +9,12 @@
     "./http": "./http.ts",
     "./websocket": "./websocket.ts"
   },
+  "dependencies": {
+    "zod": "^4.1.11"
+  },
   "scripts": {
     "build": "node -e \"console.log('Protocol package build wiring will be added once package outputs are defined.')\"",
-    "test": "node -e \"console.log('Protocol package tests will be added once shared contracts exist.')\"",
+    "test": "vitest run",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc -p tsconfig.json"
   }

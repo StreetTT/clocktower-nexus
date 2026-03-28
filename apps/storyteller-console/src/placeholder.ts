@@ -18,7 +18,15 @@ import type {
   ApiRequestShape,
   ApiSuccessEnvelope,
 } from '@clocktower-nexus/protocol/http';
-import type { ConnectMessage } from '@clocktower-nexus/protocol/websocket';
+import {
+  createApiSuccessEnvelopeSchema,
+  safeParseWithSchema,
+} from '@clocktower-nexus/protocol';
+import {
+  connectMessageSchema,
+  type ConnectMessage,
+} from '@clocktower-nexus/protocol/websocket';
+import { z } from 'zod';
 
 const storytellerConsoleSessionId: SessionId = {
   kind: 'session',
@@ -90,6 +98,31 @@ export const storytellerConsoleConnectMessage: ConnectMessage = {
   lastKnownRevision: storytellerConsolePlaceholderSession.revision,
 };
 
+export const storytellerConsoleBootstrapSchema = createApiSuccessEnvelopeSchema(
+  z.object({
+    sessionId: z.string(),
+  }),
+);
+
+export const storytellerConsoleBootstrapSchemaResult = safeParseWithSchema(
+  storytellerConsoleBootstrapSchema,
+  {
+    ok: true,
+    data: {
+      sessionId: storytellerConsoleSessionId.value,
+    },
+    meta: {
+      requestId: 'storyteller-console-request',
+      revision: storytellerConsolePlaceholderSession.revision,
+    },
+  },
+);
+
+export const storytellerConsoleConnectSchemaResult = safeParseWithSchema(
+  connectMessageSchema,
+  storytellerConsoleConnectMessage,
+);
+
 export interface StorytellerConsolePlaceholder {
   readonly domainPackage: DomainPackageMarker['packageName'];
   readonly sessionIdKind: SessionId['kind'];
@@ -101,4 +134,6 @@ export interface StorytellerConsolePlaceholder {
   readonly bootstrapRequest: typeof storytellerConsoleBootstrapRequest;
   readonly bootstrapResponse: typeof storytellerConsoleBootstrapResponse;
   readonly connectMessage: typeof storytellerConsoleConnectMessage;
+  readonly bootstrapSchemaResult: typeof storytellerConsoleBootstrapSchemaResult;
+  readonly connectSchemaResult: typeof storytellerConsoleConnectSchemaResult;
 }
