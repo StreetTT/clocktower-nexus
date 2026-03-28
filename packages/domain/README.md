@@ -30,4 +30,25 @@ Consumers should import only from the stable package entrypoints:
 
 Paths under `src/**` are internal implementation details and are not part of the stable consumer API.
 
-This task establishes the structural boundaries only. Concrete domain entities, command vocabulary, reducer behavior, and projection contracts arrive in later tasks.
+## Baseline Entity Set
+
+The baseline state surface currently defines:
+
+- object-wrapped identifiers for sessions, seats, and players
+- numeric session revision metadata
+- JSON-safe timestamp strings for canonical session metadata
+- a `PhaseState` with `setup`, `day`, and `night`
+- standalone `Seat` and `Player` entities with stable identity only
+- a canonical `GameSession` root entity containing phase, timestamps, revision, seats, and players
+
+## Deferred For Later Tasks
+
+This task intentionally does not model:
+
+- seat occupancy or player naming
+- alive or dead state and ghost-vote availability
+- nominations, votes, or timers
+- role assignments, reminders, or private notes
+- archive status, access metadata, or projection-specific fields
+
+Those concerns land in their dedicated state, command, and projector tasks.
