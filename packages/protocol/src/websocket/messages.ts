@@ -12,6 +12,11 @@ import {
   socketAudienceSchema,
 } from './stream-identifiers.js';
 
+type ProjectionUpdateStreamSchema =
+  | typeof projectionStreamSchema
+  | z.ZodLiteral<'storyteller'>
+  | z.ZodLiteral<'public'>;
+
 /**
  * Shared runtime schema for a websocket connect message.
  */
@@ -89,7 +94,7 @@ export type SubscribedMessage = z.infer<typeof subscribedMessageSchema>;
  */
 export function createProjectionUpdateMessageSchema<
   TProjectionSchema extends z.ZodTypeAny,
-  TStreamSchema extends z.ZodTypeAny = typeof projectionStreamSchema,
+  TStreamSchema extends ProjectionUpdateStreamSchema = typeof projectionStreamSchema,
 >(
   projectionSchema: TProjectionSchema,
   streamSchema: TStreamSchema = projectionStreamSchema as unknown as TStreamSchema,
