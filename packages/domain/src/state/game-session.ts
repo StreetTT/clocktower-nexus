@@ -4,6 +4,9 @@ import type { Player } from './player.js';
 import type { Seat } from './seat.js';
 import type { SessionId } from './identifiers.js';
 
+/**
+ * Canonical root entity for session state.
+ */
 export interface GameSession {
   readonly id: SessionId;
   readonly revision: SessionRevision;

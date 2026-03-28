@@ -48,6 +48,10 @@ Follow the shared formatting and linting setup already configured in the repo.
 When a design decision will affect later tasks, record it in
 `docs/decisions.md` with affected feature or task references instead of leaving
 it only in commit history or chat context.
+Exported or public-facing shared-package APIs should carry doc comments.
+Inline comments should be used only for non-obvious logic, invariants, privacy
+boundaries, reducer edge cases, and projection or redaction behavior.
+Do not add boilerplate comments that only restate what the code already says.
 
 ## Change rules
 
@@ -63,6 +67,8 @@ current task's implementation scope, record that decision in
 silently implementing around it. Treat those entries as decisions that should
 come into effect when the relevant later tasks are reached, even if the current
 task does not implement them yet.
+When behavior changes on a documented public API, update its doc comments in
+the same change instead of leaving them stale.
 Prefer additive groundwork over speculative abstraction; if later tasks already
 own a concern, avoid fully implementing it early.
 

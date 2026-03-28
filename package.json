@@ -12,6 +12,7 @@
   ],
   "devDependencies": {
     "eslint": "^10.1.0",
+    "eslint-plugin-jsdoc": "^55.0.3",
     "prettier": "^3.8.1",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.57.2",

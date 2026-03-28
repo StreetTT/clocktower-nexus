@@ -120,3 +120,8 @@ The repository does not yet include:
   affected by earlier design choices.
 - Review `AGENTS.md` for repository-wide guidance intended for coding agents and
   future LLM-assisted implementation work.
+- Exported shared-package APIs should carry doc comments, while inline comments
+  are reserved for non-obvious logic rather than boilerplate narration.
+- Lint enforces the structural part of this policy for shared packages, while
+  qualitative “comment only when helpful” judgment remains a review and agent
+  guidance standard.
