@@ -1,13 +1,52 @@
+import { z } from 'zod';
+
+import {
+  nonEmptyTransportStringSchema,
+  requestIdSchema,
+  revisionSchema,
+} from '../shared/index.js';
+
 /**
  * Shared metadata that may accompany HTTP responses.
  */
-export interface ApiResponseMeta {
-  readonly requestId?: string;
-  readonly revision?: number;
+export const apiResponseMetaSchema = z
+  .object({
+    requestId: requestIdSchema.optional(),
+    revision: revisionSchema.optional(),
+  })
+  .strict();
+
+/**
+ * Shared HTTP response metadata type.
+ */
+export type ApiResponseMeta = z.infer<typeof apiResponseMetaSchema>;
+
+/**
+ * Creates a runtime schema for an HTTP error payload.
+ */
+export function createApiErrorSchema<
+  TCodeSchema extends z.ZodTypeAny = z.ZodString,
+  TDetailsSchema extends z.ZodTypeAny = z.ZodUnknown,
+>(
+  codeSchema: TCodeSchema = nonEmptyTransportStringSchema as unknown as TCodeSchema,
+  detailsSchema: TDetailsSchema = z.unknown() as unknown as TDetailsSchema,
+) {
+  return z
+    .object({
+      code: codeSchema,
+      message: nonEmptyTransportStringSchema,
+      details: detailsSchema.optional(),
+    })
+    .strict();
 }
 
 /**
- * Generic error payload for HTTP response envelopes.
+ * Shared runtime schema for a generic HTTP error payload.
+ */
+export const apiErrorSchema = createApiErrorSchema();
+
+/**
+ * Shared generic HTTP error payload type.
  */
 export interface ApiError<TCode extends string = string, TDetails = unknown> {
   readonly code: TCode;
@@ -16,7 +55,26 @@ export interface ApiError<TCode extends string = string, TDetails = unknown> {
 }
 
 /**
- * Standard success envelope for HTTP APIs shared across clients and server.
+ * Creates a runtime schema for an HTTP success envelope.
+ */
+export function createApiSuccessEnvelopeSchema<
+  TDataSchema extends z.ZodTypeAny,
+  TMetaSchema extends z.ZodTypeAny = typeof apiResponseMetaSchema,
+>(
+  dataSchema: TDataSchema,
+  metaSchema: TMetaSchema = apiResponseMetaSchema as unknown as TMetaSchema,
+) {
+  return z
+    .object({
+      ok: z.literal(true),
+      data: dataSchema,
+      meta: metaSchema.optional(),
+    })
+    .strict();
+}
+
+/**
+ * Shared HTTP success envelope type.
  */
 export interface ApiSuccessEnvelope<TData, TMeta = ApiResponseMeta> {
   readonly ok: true;
@@ -25,7 +83,28 @@ export interface ApiSuccessEnvelope<TData, TMeta = ApiResponseMeta> {
 }
 
 /**
- * Standard error envelope for HTTP APIs shared across clients and server.
+ * Creates a runtime schema for an HTTP error envelope.
+ */
+export function createApiErrorEnvelopeSchema<
+  TCodeSchema extends z.ZodTypeAny = z.ZodString,
+  TDetailsSchema extends z.ZodTypeAny = z.ZodUnknown,
+  TMetaSchema extends z.ZodTypeAny = typeof apiResponseMetaSchema,
+>(
+  codeSchema: TCodeSchema = nonEmptyTransportStringSchema as unknown as TCodeSchema,
+  detailsSchema: TDetailsSchema = z.unknown() as unknown as TDetailsSchema,
+  metaSchema: TMetaSchema = apiResponseMetaSchema as unknown as TMetaSchema,
+) {
+  return z
+    .object({
+      ok: z.literal(false),
+      error: createApiErrorSchema(codeSchema, detailsSchema),
+      meta: metaSchema.optional(),
+    })
+    .strict();
+}
+
+/**
+ * Shared HTTP error envelope type.
  */
 export interface ApiErrorEnvelope<
   TCode extends string = string,
@@ -38,7 +117,37 @@ export interface ApiErrorEnvelope<
 }
 
 /**
- * Shared discriminated HTTP response envelope used by both clients and server.
+ * Creates a runtime schema for a discriminated HTTP response envelope.
+ */
+export function createApiResponseEnvelopeSchema<
+  TDataSchema extends z.ZodTypeAny,
+  TCodeSchema extends z.ZodTypeAny = z.ZodString,
+  TDetailsSchema extends z.ZodTypeAny = z.ZodUnknown,
+  TMetaSchema extends z.ZodTypeAny = typeof apiResponseMetaSchema,
+>(
+  dataSchema: TDataSchema,
+  options?: {
+    readonly codeSchema?: TCodeSchema;
+    readonly detailsSchema?: TDetailsSchema;
+    readonly metaSchema?: TMetaSchema;
+  },
+) {
+  return z.discriminatedUnion('ok', [
+    createApiSuccessEnvelopeSchema(
+      dataSchema,
+      options?.metaSchema ?? (apiResponseMetaSchema as unknown as TMetaSchema),
+    ),
+    createApiErrorEnvelopeSchema(
+      options?.codeSchema ??
+        (nonEmptyTransportStringSchema as unknown as TCodeSchema),
+      options?.detailsSchema ?? (z.unknown() as unknown as TDetailsSchema),
+      options?.metaSchema ?? (apiResponseMetaSchema as unknown as TMetaSchema),
+    ),
+  ]);
+}
+
+/**
+ * Shared discriminated HTTP response envelope type.
  */
 export type ApiResponseEnvelope<
   TData,

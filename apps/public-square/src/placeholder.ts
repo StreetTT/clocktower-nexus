@@ -2,7 +2,11 @@ import type {
   ApiErrorEnvelope,
   ProtocolPackageMarker,
 } from '@clocktower-nexus/protocol';
-import type { ProjectionUpdateMessage } from '@clocktower-nexus/protocol/websocket';
+import {
+  createProjectionUpdateMessageSchema,
+  type ProjectionUpdateMessage,
+} from '@clocktower-nexus/protocol/websocket';
+import { z } from 'zod';
 
 export interface PublicSquarePlaceholder {
   readonly protocolPackage: ProtocolPackageMarker['packageName'];
@@ -45,3 +49,14 @@ export const publicSquareProjectionUpdate: ProjectionUpdateMessage<
     phase: 'setup',
   },
 };
+
+export const publicSquareProjectionUpdateSchema =
+  createProjectionUpdateMessageSchema(
+    z.object({
+      phase: z.enum(['setup', 'day', 'night']),
+    }),
+    z.literal('public'),
+  );
+
+export const publicSquareProjectionUpdateResult =
+  publicSquareProjectionUpdateSchema.safeParse(publicSquareProjectionUpdate);
