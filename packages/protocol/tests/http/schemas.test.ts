@@ -16,6 +16,21 @@ describe('HTTP protocol schemas', () => {
     > = {};
 
     expect(invalidRequest).toBeUndefined();
+
+    const requestShapeSchema = createApiRequestShapeSchema({
+      params: z.object({
+        sessionId: z.string(),
+      }),
+    });
+
+    const parsedRequest: { params: { sessionId: string } } =
+      requestShapeSchema.parse({
+        params: {
+          sessionId: 'session-1',
+        },
+      });
+
+    expect(parsedRequest).toBeUndefined();
   }
 
   it('parses a success envelope built from a caller-supplied payload schema', () => {
