@@ -1,17 +1,20 @@
 import { z } from 'zod';
 
+type ApiRequestSection<TKey extends 'params' | 'query' | 'body', TValue> =
+  [TValue] extends [undefined]
+    ? Record<never, never>
+    : { readonly [K in TKey]: TValue };
+
 /**
  * Shared transport helper for endpoint-specific HTTP request shapes.
  */
-export interface ApiRequestShape<
+export type ApiRequestShape<
   TParams = undefined,
   TQuery = undefined,
   TBody = undefined,
-> {
-  readonly params?: TParams;
-  readonly query?: TQuery;
-  readonly body?: TBody;
-}
+> = ApiRequestSection<'params', TParams> &
+  ApiRequestSection<'query', TQuery> &
+  ApiRequestSection<'body', TBody>;
 
 /**
  * Creates a runtime schema for an endpoint-specific HTTP request shape.
