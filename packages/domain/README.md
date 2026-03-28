@@ -30,6 +30,27 @@ Consumers should import only from the stable package entrypoints:
 
 Paths under `src/**` are internal implementation details and are not part of the stable consumer API.
 
+## Testing
+
+Run domain tests with:
+
+- `npm run test --workspace @clocktower-nexus/domain`
+
+The domain test harness is package-scoped and intentionally independent from
+frontend or backend runtime bootstrapping.
+
+### Test Layout
+
+- `tests/state`
+  Simple state-construction coverage and other foundational state tests.
+- `tests/fixtures`
+  Reusable canonical sample data for future domain tests.
+- `tests/helpers`
+  Test-only builders and utilities for IDs, sessions, and similar helpers.
+
+Future reducer tests should live in `tests/reducers`, and future projector
+tests should live in `tests/projectors`.
+
 ## Command Naming
 
 Domain commands are part of the server-authoritative state flow. They should describe game intent, not UI gestures.

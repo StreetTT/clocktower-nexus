@@ -45,12 +45,11 @@ export const storytellerConsoleSetPhaseCommand: SessionScopedCommand<'set_phase'
     sessionId: storytellerConsoleSessionId,
   };
 
-export const storytellerConsoleSetPlayerNameCommand: SessionScopedCommand<
-  'set_player_name'
-> = {
-  type: PLAYER_COMMANDS.setPlayerName,
-  sessionId: storytellerConsoleSessionId,
-};
+export const storytellerConsoleSetPlayerNameCommand: SessionScopedCommand<'set_player_name'> =
+  {
+    type: PLAYER_COMMANDS.setPlayerName,
+    sessionId: storytellerConsoleSessionId,
+  };
 
 export interface StorytellerConsolePlaceholder {
   readonly domainPackage: DomainPackageMarker['packageName'];

@@ -11,6 +11,8 @@
     "events.ts",
     "reducers.ts",
     "projectors.ts",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "vitest.config.ts"
   ]
 }
