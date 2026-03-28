@@ -4,6 +4,11 @@
   "type": "module",
   "version": "0.0.0",
   "description": "Private Storyteller console application workspace.",
+  "dependencies": {
+    "@clocktower-nexus/domain": "*",
+    "@clocktower-nexus/protocol": "*",
+    "zod": "^4.1.11"
+  },
   "scripts": {
     "dev": "node -e \"console.log('Storyteller console dev server wiring will be added in a later app scaffold task.')\"",
     "build": "node -e \"console.log('Storyteller console build wiring will be added in a later app scaffold task.')\"",
