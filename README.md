@@ -111,3 +111,12 @@ The repository does not yet include:
   Product vision, architecture, and design principles.
 - `docs/task-list.md`
   Delivery plan and implementation backlog.
+- `docs/decisions.md`
+  Cross-task design decisions that future work should inherit.
+
+## Agent Guidance
+
+- Review `docs/decisions.md` before planning or implementing work that may be
+  affected by earlier design choices.
+- Review `AGENTS.md` for repository-wide guidance intended for coding agents and
+  future LLM-assisted implementation work.
