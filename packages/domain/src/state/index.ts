@@ -5,6 +5,9 @@ export type { PhaseName, PhaseState } from './phase-state.js';
 export type { Player } from './player.js';
 export type { Seat } from './seat.js';
 
+/**
+ * Placeholder marker for the state module entrypoint.
+ */
 export interface DomainStateModuleMarker {
   readonly module: 'state';
 }

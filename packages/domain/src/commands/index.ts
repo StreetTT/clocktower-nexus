@@ -19,6 +19,9 @@ export type {
 } from './command-names.js';
 export type { DomainCommand, SessionScopedCommand } from './command-types.js';
 
+/**
+ * Placeholder marker for the commands module entrypoint.
+ */
 export interface DomainCommandsModuleMarker {
   readonly module: 'commands';
 }
