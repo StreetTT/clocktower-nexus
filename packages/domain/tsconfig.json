@@ -4,5 +4,13 @@
     "composite": true,
     "tsBuildInfoFile": "../../node_modules/.cache/typescript/domain.tsbuildinfo"
   },
-  "include": ["index.ts", "src/**/*.ts"]
+  "include": [
+    "index.ts",
+    "state.ts",
+    "commands.ts",
+    "events.ts",
+    "reducers.ts",
+    "projectors.ts",
+    "src/**/*.ts"
+  ]
 }

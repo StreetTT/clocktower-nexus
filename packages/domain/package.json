@@ -4,6 +4,14 @@
   "type": "module",
   "version": "0.0.0",
   "description": "Canonical game state and domain logic workspace.",
+  "exports": {
+    ".": "./index.ts",
+    "./state": "./state.ts",
+    "./commands": "./commands.ts",
+    "./events": "./events.ts",
+    "./reducers": "./reducers.ts",
+    "./projectors": "./projectors.ts"
+  },
   "scripts": {
     "build": "node -e \"console.log('Domain package build wiring will be added once package outputs are defined.')\"",
     "test": "node -e \"console.log('Domain package tests will be added in the domain test harness task.')\"",
