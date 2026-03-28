@@ -14,6 +14,10 @@ import type {
   SessionScopedCommand,
 } from '@clocktower-nexus/domain/commands';
 import type { PhaseState } from '@clocktower-nexus/domain/state';
+import type {
+  ApiRequestShape,
+  ApiSuccessEnvelope,
+} from '@clocktower-nexus/protocol/http';
 
 const storytellerConsoleSessionId: SessionId = {
   kind: 'session',
@@ -51,6 +55,32 @@ export const storytellerConsoleSetPlayerNameCommand: SessionScopedCommand<'set_p
     sessionId: storytellerConsoleSessionId,
   };
 
+export const storytellerConsoleBootstrapRequest: ApiRequestShape<
+  { readonly sessionId: string },
+  { readonly role: 'storyteller' },
+  undefined
+> = {
+  params: {
+    sessionId: storytellerConsoleSessionId.value,
+  },
+  query: {
+    role: 'storyteller',
+  },
+};
+
+export const storytellerConsoleBootstrapResponse: ApiSuccessEnvelope<{
+  readonly session: GameSession;
+}> = {
+  ok: true,
+  data: {
+    session: storytellerConsolePlaceholderSession,
+  },
+  meta: {
+    requestId: 'storyteller-console-request',
+    revision: storytellerConsolePlaceholderSession.revision,
+  },
+};
+
 export interface StorytellerConsolePlaceholder {
   readonly domainPackage: DomainPackageMarker['packageName'];
   readonly sessionIdKind: SessionId['kind'];
@@ -59,4 +89,6 @@ export interface StorytellerConsolePlaceholder {
   readonly createSessionCommandType: typeof SESSION_COMMANDS.createSession;
   readonly setPhaseCommandType: typeof PHASE_VOTE_COMMANDS.setPhase;
   readonly setPlayerNameCommandType: typeof PLAYER_COMMANDS.setPlayerName;
+  readonly bootstrapRequest: typeof storytellerConsoleBootstrapRequest;
+  readonly bootstrapResponse: typeof storytellerConsoleBootstrapResponse;
 }

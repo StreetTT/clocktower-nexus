@@ -4,6 +4,10 @@
   "type": "module",
   "version": "0.0.0",
   "description": "Shared transport contract workspace.",
+  "exports": {
+    ".": "./index.ts",
+    "./http": "./http.ts"
+  },
   "scripts": {
     "build": "node -e \"console.log('Protocol package build wiring will be added once package outputs are defined.')\"",
     "test": "node -e \"console.log('Protocol package tests will be added once shared contracts exist.')\"",
