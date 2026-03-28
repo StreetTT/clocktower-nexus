@@ -6,7 +6,8 @@
   "description": "Shared transport contract workspace.",
   "exports": {
     ".": "./index.ts",
-    "./http": "./http.ts"
+    "./http": "./http.ts",
+    "./websocket": "./websocket.ts"
   },
   "scripts": {
     "build": "node -e \"console.log('Protocol package build wiring will be added once package outputs are defined.')\"",
