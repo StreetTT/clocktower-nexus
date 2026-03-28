@@ -2,12 +2,17 @@ import type {
   ApiErrorEnvelope,
   ProtocolPackageMarker,
 } from '@clocktower-nexus/protocol';
+import type { ProjectionUpdateMessage } from '@clocktower-nexus/protocol/websocket';
 
 export interface PublicSquarePlaceholder {
   readonly protocolPackage: ProtocolPackageMarker['packageName'];
   readonly bootstrapResponse: ApiErrorEnvelope<
     'session_not_found',
     { readonly sessionId: string }
+  >;
+  readonly socketProjectionUpdate: ProjectionUpdateMessage<
+    { readonly phase: 'day' | 'night' | 'setup' },
+    'public'
   >;
 }
 
@@ -25,5 +30,18 @@ export const publicSquareBootstrapError: ApiErrorEnvelope<
   },
   meta: {
     requestId: 'public-square-request',
+  },
+};
+
+export const publicSquareProjectionUpdate: ProjectionUpdateMessage<
+  { readonly phase: 'day' | 'night' | 'setup' },
+  'public'
+> = {
+  type: 'projection_update',
+  sessionId: 'public-square-placeholder',
+  stream: 'public',
+  revision: 1,
+  projection: {
+    phase: 'setup',
   },
 };
