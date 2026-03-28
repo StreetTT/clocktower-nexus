@@ -22,8 +22,6 @@ Requests remain endpoint-specific shapes in this task. Use `ApiRequestShape` to
 compose typed `params`, `query`, and `body` fields where helpful, but do not
 wrap request bodies in a global transport envelope yet.
 
-Runtime schemas and validation are intentionally deferred to Task 1.2.7.
-
 The package also defines shared WebSocket contracts for realtime sync between
 the backend and both clients:
 
@@ -41,5 +39,24 @@ WebSocket contracts in this task remain transport-only:
 - no heartbeat or disconnect messages yet
 - no concrete storyteller or public projection payload types yet
 
-Runtime validation is intentionally deferred to Task 1.2.7. Role-aware socket
-authorization lands later in Task 1.3.5.
+The package now also exports runtime Zod schemas and schema builders for these
+shared transport contracts. The schemas are the runtime source of truth, while
+the exported TypeScript types stay aligned with those schema shapes.
+
+Use the protocol package for:
+
+- concrete schemas such as `connectMessageSchema` and `socketErrorMessageSchema`
+- reusable schema builders such as `createApiResponseEnvelopeSchema` and
+  `createProjectionUpdateMessageSchema`
+- thin validation helpers such as `parseWithSchema` and `safeParseWithSchema`
+
+Endpoint-specific HTTP payload schemas and concrete storyteller or public
+projection schemas should plug into those builders from the backend or clients
+that own those payloads.
+
+Runtime validation lands in this task, but later work still owns:
+
+- Task 1.3.3 for transport and backend error conventions
+- Task 1.3.5 for role-aware socket authorization
+- Task 1.2.8 and Task 1.2.9 for concrete storyteller and public projection
+  payload shapes
