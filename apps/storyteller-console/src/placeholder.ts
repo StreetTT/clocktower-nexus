@@ -3,7 +3,16 @@ import type {
   GameSession,
   SessionId,
 } from '@clocktower-nexus/domain';
-import type { DomainCommandsModuleMarker } from '@clocktower-nexus/domain/commands';
+import {
+  PHASE_VOTE_COMMANDS,
+  PLAYER_COMMANDS,
+  SESSION_COMMANDS,
+} from '@clocktower-nexus/domain/commands';
+import type {
+  DomainCommand,
+  DomainCommandsModuleMarker,
+  SessionScopedCommand,
+} from '@clocktower-nexus/domain/commands';
 import type { PhaseState } from '@clocktower-nexus/domain/state';
 
 const storytellerConsoleSessionId: SessionId = {
@@ -25,9 +34,30 @@ export const storytellerConsolePlaceholderSession: GameSession = {
   players: [],
 };
 
+export const storytellerConsoleCreateSessionCommand: DomainCommand<'create_session'> =
+  {
+    type: SESSION_COMMANDS.createSession,
+  };
+
+export const storytellerConsoleSetPhaseCommand: SessionScopedCommand<'set_phase'> =
+  {
+    type: PHASE_VOTE_COMMANDS.setPhase,
+    sessionId: storytellerConsoleSessionId,
+  };
+
+export const storytellerConsoleSetPlayerNameCommand: SessionScopedCommand<
+  'set_player_name'
+> = {
+  type: PLAYER_COMMANDS.setPlayerName,
+  sessionId: storytellerConsoleSessionId,
+};
+
 export interface StorytellerConsolePlaceholder {
   readonly domainPackage: DomainPackageMarker['packageName'];
   readonly sessionIdKind: SessionId['kind'];
   readonly phaseName: PhaseState['current'];
   readonly domainCommandsModule: DomainCommandsModuleMarker['module'];
+  readonly createSessionCommandType: typeof SESSION_COMMANDS.createSession;
+  readonly setPhaseCommandType: typeof PHASE_VOTE_COMMANDS.setPhase;
+  readonly setPlayerNameCommandType: typeof PLAYER_COMMANDS.setPlayerName;
 }

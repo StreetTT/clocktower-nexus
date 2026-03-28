@@ -30,6 +30,38 @@ Consumers should import only from the stable package entrypoints:
 
 Paths under `src/**` are internal implementation details and are not part of the stable consumer API.
 
+## Command Naming
+
+Domain commands are part of the server-authoritative state flow. They should describe game intent, not UI gestures.
+
+### Naming Rules
+
+- use lower snake_case command `type` values
+- choose verbs that describe domain actions such as `create_`, `archive_`, `assign_`, `mark_`, `set_`, `start_`, `close_`, `consume_`, `restore_`, `add_`, `remove_`, and `clear_`
+- name commands around the state change the server should apply, not around the control a user clicked
+- name commands after the entity or domain action they affect; for example, player identity commands should be player commands even if a seat-focused UI is the trigger surface
+- a seat-driven UI may still invoke a player-oriented command by resolving the occupied player first, but that handler convenience should not distort the canonical command name
+
+### Good Command Names
+
+- `create_session`
+- `assign_player_to_seat`
+- `set_player_name`
+- `mark_player_dead`
+- `set_phase`
+- `start_nomination`
+- `set_public_status`
+
+### Avoid UI-Shaped Names
+
+- `toggle_shroud`
+- `click_seat`
+- `open_phase_modal`
+- `drag_player`
+- `show_vote_panel`
+
+The command surface currently establishes naming vocabulary and shared `type`/`sessionId` contract patterns only. Concrete payload shapes, validation rules, reducer behavior, and emitted events are defined in later command and reducer tasks.
+
 ## Baseline Entity Set
 
 The baseline state surface currently defines:
@@ -50,5 +82,6 @@ This task intentionally does not model:
 - nominations, votes, or timers
 - role assignments, reminders, or private notes
 - archive status, access metadata, or projection-specific fields
+- concrete command payload shapes, validation rules, reducer behavior, and event emission
 
 Those concerns land in their dedicated state, command, and projector tasks.
