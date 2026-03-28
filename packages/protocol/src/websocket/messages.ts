@@ -94,7 +94,8 @@ export type SubscribedMessage = z.infer<typeof subscribedMessageSchema>;
  */
 export function createProjectionUpdateMessageSchema<
   TProjectionSchema extends z.ZodTypeAny,
-  TStreamSchema extends ProjectionUpdateStreamSchema = typeof projectionStreamSchema,
+  TStreamSchema extends ProjectionUpdateStreamSchema =
+    typeof projectionStreamSchema,
 >(
   projectionSchema: TProjectionSchema,
   streamSchema: TStreamSchema = projectionStreamSchema as unknown as TStreamSchema,
