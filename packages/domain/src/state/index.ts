@@ -1,9 +1,4 @@
-export type {
-  EntityId,
-  PlayerId,
-  SeatId,
-  SessionId,
-} from './identifiers.js';
+export type { EntityId, PlayerId, SeatId, SessionId } from './identifiers.js';
 export type { GameSession } from './game-session.js';
 export type { IsoTimestamp, SessionRevision } from './metadata.js';
 export type { PhaseName, PhaseState } from './phase-state.js';
