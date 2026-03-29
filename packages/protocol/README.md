@@ -34,7 +34,7 @@ the backend and both clients:
 
 WebSocket contracts in this task remain transport-only:
 
-- no runtime schemas yet
+- runtime schemas cover the shared transport message shapes in this package
 - no token or authorization payload shapes yet
 - no heartbeat or disconnect messages yet
 - no concrete storyteller or public projection payload types yet
