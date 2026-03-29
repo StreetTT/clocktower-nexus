@@ -163,6 +163,10 @@ export const storytellerConsoleProjection: StorytellerProjection = {
         roleId: 'washerwoman',
         roleName: 'Washerwoman',
       },
+      alignment: {
+        alignmentId: 'good',
+        alignmentName: 'Good',
+      },
       reminders: [
         {
           reminderId: 'reminder-1',

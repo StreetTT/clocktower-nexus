@@ -70,7 +70,11 @@ Private ownership is explicit in the projection:
 
 - seat notes stay on seat views
 - session notes stay top-level
-- player notes, roles, and reminders live on player views
+- player notes, roles, alignments, and reminders live on player views
+
+Role identity and alignment are intentionally separate in the private
+Storyteller projection so later hidden-state and role-change tasks do not need
+to infer alignment implicitly from the assigned role.
 
 This task defines the private read model contract only. It does not yet add the
 projector implementation, public projection contract, or redaction tests.

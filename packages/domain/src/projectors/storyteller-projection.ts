@@ -50,6 +50,7 @@ export interface StorytellerPlayerProjection {
   readonly isAlive: boolean;
   readonly ghostVoteAvailable: boolean;
   readonly role: StorytellerRoleProjection | null;
+  readonly alignment: StorytellerAlignmentProjection | null;
   readonly reminders: readonly StorytellerReminderProjection[];
   readonly note: string | null;
 }
@@ -60,6 +61,14 @@ export interface StorytellerPlayerProjection {
 export interface StorytellerRoleProjection {
   readonly roleId: string;
   readonly roleName: string;
+}
+
+/**
+ * Private alignment summary shown alongside role data in Storyteller workflows.
+ */
+export interface StorytellerAlignmentProjection {
+  readonly alignmentId: string;
+  readonly alignmentName: string;
 }
 
 /**

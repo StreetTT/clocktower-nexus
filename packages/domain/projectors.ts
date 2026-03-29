@@ -1,5 +1,6 @@
 export type {
   DomainProjectorsModuleMarker,
+  StorytellerAlignmentProjection,
   StorytellerNominationProjection,
   StorytellerPlayerProjection,
   StorytellerProjection,
