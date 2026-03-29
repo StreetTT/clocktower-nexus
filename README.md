@@ -4,9 +4,10 @@ Clocktower Nexus is a self-hosted web application for running _Blood on the
 Clocktower_ in person with a private Storyteller console and a shared public
 Town Square display.
 
-The repository is currently in the foundation phase. Workspace tooling,
-TypeScript, formatting, and linting are in place, but the actual React and
-Fastify runtime scaffolds have not been added yet.
+The repository is currently moving out of the foundation phase. Workspace
+tooling, TypeScript, formatting, and linting are in place, the initial Fastify
+game-hub scaffold has been added, and the React client runtime scaffolds are
+still pending later app tasks.
 
 ## Project Overview
 
@@ -65,6 +66,11 @@ later scaffold tasks land:
 At this stage, the validation commands are more useful than the runtime
 commands.
 
+For the backend specifically, the game hub now has a real local dev entrypoint:
+
+- `npm run dev --workspace @clocktower-nexus/game-hub`
+  Starts the Fastify backend in watch mode for local development.
+
 ## Workspace Layout
 
 ### Apps
@@ -102,7 +108,6 @@ The repository already includes:
 The repository does not yet include:
 
 - React app runtime scaffolds for the Storyteller console or public square
-- Fastify backend runtime scaffolds for the game hub
 - real build or test implementations behind every workspace command
 
 ## Related Docs
