@@ -50,6 +50,9 @@ frontend or backend runtime bootstrapping.
 
 Future reducer tests should live in `tests/reducers`, and future projector
 tests should live in `tests/projectors`.
+Projection redaction regression coverage should also live in
+`tests/projectors`, using paired public and private fixtures built from the
+same scenario whenever new visibility boundaries are added.
 
 ## Storyteller Projection
 
