@@ -2,6 +2,7 @@ import type {
   DomainPackageMarker,
   GameSession,
   SessionId,
+  StorytellerProjection,
 } from '@clocktower-nexus/domain';
 import {
   PHASE_VOTE_COMMANDS,
@@ -123,6 +124,68 @@ export const storytellerConsoleConnectSchemaResult = safeParseWithSchema(
   storytellerConsoleConnectMessage,
 );
 
+export const storytellerConsoleProjection: StorytellerProjection = {
+  session: {
+    sessionId: storytellerConsoleSessionId,
+    revision: storytellerConsolePlaceholderSession.revision,
+    createdAt: storytellerConsolePlaceholderSession.createdAt,
+    updatedAt: storytellerConsolePlaceholderSession.updatedAt,
+    phase: storytellerConsolePhase,
+  },
+  seats: [
+    {
+      seatId: {
+        kind: 'seat',
+        value: 'storyteller-seat-1',
+      },
+      position: 0,
+      occupantPlayerId: {
+        kind: 'player',
+        value: 'storyteller-player-1',
+      },
+      note: null,
+    },
+  ],
+  players: [
+    {
+      playerId: {
+        kind: 'player',
+        value: 'storyteller-player-1',
+      },
+      assignedSeatId: {
+        kind: 'seat',
+        value: 'storyteller-seat-1',
+      },
+      displayName: 'Player One',
+      isAlive: true,
+      ghostVoteAvailable: true,
+      role: {
+        roleId: 'washerwoman',
+        roleName: 'Washerwoman',
+      },
+      reminders: [
+        {
+          reminderId: 'reminder-1',
+          text: 'Shown first night',
+        },
+      ],
+      note: null,
+    },
+  ],
+  workflow: {
+    phase: storytellerConsolePhase,
+    activeNomination: null,
+    activeVote: null,
+    timer: null,
+    publicStatus: null,
+  },
+  selectedScript: {
+    scriptId: 'tb',
+    scriptName: 'Trouble Brewing',
+  },
+  sessionNote: null,
+};
+
 export interface StorytellerConsolePlaceholder {
   readonly domainPackage: DomainPackageMarker['packageName'];
   readonly sessionIdKind: SessionId['kind'];
@@ -136,4 +199,5 @@ export interface StorytellerConsolePlaceholder {
   readonly connectMessage: typeof storytellerConsoleConnectMessage;
   readonly bootstrapSchemaResult: typeof storytellerConsoleBootstrapSchemaResult;
   readonly connectSchemaResult: typeof storytellerConsoleConnectSchemaResult;
+  readonly storytellerProjection: typeof storytellerConsoleProjection;
 }

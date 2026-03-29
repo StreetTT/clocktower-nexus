@@ -51,6 +51,30 @@ frontend or backend runtime bootstrapping.
 Future reducer tests should live in `tests/reducers`, and future projector
 tests should live in `tests/projectors`.
 
+## Storyteller Projection
+
+The domain package now defines a first private read model for the Storyteller
+console under `@clocktower-nexus/domain/projectors`.
+
+`StorytellerProjection` is intentionally seat-centric overall:
+
+- `session` carries revision-aware session metadata
+- `seats` is the ordered circle layout the console works from
+- `players` holds private player state and hidden gameplay artifacts
+- `workflow` groups phase, nomination, vote, timer, and public-status control
+  state
+- `selectedScript` and `sessionNote` stay top-level for common setup and
+  control workflows
+
+Private ownership is explicit in the projection:
+
+- seat notes stay on seat views
+- session notes stay top-level
+- player notes, roles, and reminders live on player views
+
+This task defines the private read model contract only. It does not yet add the
+projector implementation, public projection contract, or redaction tests.
+
 ## Command Naming
 
 Domain commands are part of the server-authoritative state flow. They should describe game intent, not UI gestures.
@@ -105,4 +129,6 @@ This task intentionally does not model:
 - archive status, access metadata, or projection-specific fields
 - concrete command payload shapes, validation rules, reducer behavior, and event emission
 
-Those concerns land in their dedicated state, command, and projector tasks.
+Those canonical-state concerns land in their dedicated state, command, and
+projector tasks. Projection-layer contracts may reference them earlier where a
+private or public read model needs an explicit shape.

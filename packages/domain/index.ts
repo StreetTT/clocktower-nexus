@@ -21,7 +21,21 @@ export type {
   TimerStatusCommandType,
 } from './commands.js';
 export type { DomainEventsModuleMarker } from './events.js';
-export type { DomainProjectorsModuleMarker } from './projectors.js';
+export type {
+  DomainProjectorsModuleMarker,
+  StorytellerNominationProjection,
+  StorytellerPlayerProjection,
+  StorytellerProjection,
+  StorytellerPublicStatusProjection,
+  StorytellerReminderProjection,
+  StorytellerRoleProjection,
+  StorytellerSeatProjection,
+  StorytellerSelectedScriptProjection,
+  StorytellerSessionProjection,
+  StorytellerTimerProjection,
+  StorytellerVoteProjection,
+  StorytellerWorkflowProjection,
+} from './projectors.js';
 export type { DomainReducersModuleMarker } from './reducers.js';
 export type {
   DomainStateModuleMarker,
