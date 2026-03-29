@@ -17,6 +17,7 @@ describe('StorytellerProjection fixtures', () => {
 
     expect(projection.seats[0]?.note).toBeNull();
     expect(projection.players[0]?.role?.roleName).toBe('Washerwoman');
+    expect(projection.players[0]?.alignment?.alignmentName).toBe('Good');
     expect(projection.players[0]?.reminders[0]?.text).toBe('Shown first night');
     expect(projection.players[0]?.note).toBeNull();
     expect(projection.sessionNote).toBeNull();

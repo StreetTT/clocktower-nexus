@@ -121,8 +121,30 @@ that choice could otherwise be lost in chat history or commit messages.
   3.3.6, Task 3.4.3
 - `Notes for future tasks`: Keep `seats` as the ordered console layout surface.
   Represent occupancy explicitly through seat-player links. Keep seat notes
-  seat-scoped and the session note top-level. Attach roles, reminders, and
-  player notes to player views unless a later task establishes a materially
-  different ownership rule.
+  seat-scoped and the session note top-level. Attach roles, alignments,
+  reminders, and player notes to player views unless a later task establishes a
+  materially different ownership rule.
 - `Revisit when`: occupancy, role assignment, and reminder models are all
   concrete enough to prove the projection ownership rules need revision.
+
+## D-0007: Role and alignment stay separate in player-facing modeling
+
+- `Status`: Active
+- `Date`: 2026-03-29
+- `Decision`: Role and alignment should be modeled as separate concepts when a
+  player's private game state is defined, rather than treating alignment as an
+  implicit property baked into the role field.
+- `Reason`: Role identity and alignment serve different gameplay and UI needs.
+  Keeping them separate makes hidden state clearer, supports future role-change
+  or poisoning-style effects more safely, and avoids overloading one field with
+  multiple meanings.
+- `Affects`: Task 1.2.8, Task 2.2.4, Task 2.2.5, Task 2.2.6, Task 2.3.1, Task
+  3.2.4, Task 3.2.5, Task 3.2.6, Task 3.4.3
+- `Notes for future tasks`: When private player state, role assignment, and
+  storyteller projections become concrete, give role identity and alignment
+  distinct fields or value objects. Do not assume alignment must always be
+  derived from the assigned role at read time, even if a particular role implies
+  a default alignment.
+- `Revisit when`: canonical role-assignment state and storyteller projection
+  payloads are implemented deeply enough to confirm whether any additional
+  alignment states or exceptions are needed.

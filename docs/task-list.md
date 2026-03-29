@@ -508,13 +508,13 @@ The recommended delivery order is foundation first, then the canonical session e
   Create the console workflow for selecting the active script that will drive role availability and session context. - Add a script selection screen or panel. - Load available scripts from the backend or local source. - Persist active script choice into session state.
   Success Criteria: - A Storyteller can choose the active script for a session. - Script choice is stored durably and survives reload.
 
-### Task 3.2.5: Model role assignment state and commands
+### Task 3.2.5: Model role and alignment assignment state and commands
 
 - Estimate: 1 day
 - Dependencies: 1.2.2, 1.2.3, 3.2.4
 - Description:
-  Add the domain support for private role assignment without exposing that state to the public side of the application. - Define role assignment state on seats or players. - Add commands for assigning and changing roles. - Keep role data private to the Storyteller projection.
-  Success Criteria: - Canonical state supports private role assignment for each seat. - Role data is absent from the public projection contract and tests.
+  Add the domain support for private role and alignment assignment without exposing that state to the public side of the application. - Define private role identity and alignment state on seats or players without collapsing them into one field. - Add commands for assigning and changing private role data. - Keep role and alignment data private to the Storyteller projection.
+  Success Criteria: - Canonical state supports private role and alignment assignment for each seat. - Role and alignment data are absent from the public projection contract and tests.
 
 ### Task 3.2.6: Build private role assignment UI
 

@@ -1,4 +1,5 @@
 export type {
+  StorytellerAlignmentProjection,
   StorytellerNominationProjection,
   StorytellerPlayerProjection,
   StorytellerProjection,
