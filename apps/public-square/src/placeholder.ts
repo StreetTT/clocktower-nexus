@@ -99,6 +99,100 @@ export const publicSquareProjectionUpdate: ProjectionUpdateMessage<
   projection: publicSquareProjection,
 };
 
+export const publicSquareActiveWorkflowProjection: PublicProjection = {
+  session: {
+    sessionId: {
+      kind: 'session',
+      value: 'public-square-placeholder',
+    },
+    revision: 2,
+    createdAt: '2026-01-01T00:00:00.000Z',
+    updatedAt: '2026-01-01T00:02:00.000Z',
+    phase: {
+      current: 'day',
+    },
+  },
+  seats: [
+    {
+      seatId: {
+        kind: 'seat',
+        value: 'public-seat-1',
+      },
+      position: 0,
+      displayName: 'Player One',
+      isOccupied: true,
+      isAlive: true,
+      ghostVoteAvailable: true,
+      isNominated: false,
+      isVoting: true,
+    },
+    {
+      seatId: {
+        kind: 'seat',
+        value: 'public-seat-2',
+      },
+      position: 1,
+      displayName: 'Player Two',
+      isOccupied: true,
+      isAlive: true,
+      ghostVoteAvailable: true,
+      isNominated: true,
+      isVoting: false,
+    },
+  ],
+  workflow: {
+    phase: {
+      current: 'day',
+    },
+    activeNomination: {
+      nominatorSeatId: {
+        kind: 'seat',
+        value: 'public-seat-1',
+      },
+      nomineeSeatId: {
+        kind: 'seat',
+        value: 'public-seat-2',
+      },
+      isOpen: true,
+    },
+    activeVote: {
+      nomineeSeatId: {
+        kind: 'seat',
+        value: 'public-seat-2',
+      },
+      participatingSeatIds: [
+        {
+          kind: 'seat',
+          value: 'public-seat-1',
+        },
+      ],
+      isOpen: true,
+    },
+    timer: {
+      isRunning: true,
+      remainingSeconds: 42,
+    },
+  },
+  publicStatus: {
+    text: 'Voting in progress.',
+  },
+  selectedScript: {
+    scriptId: 'tb',
+    scriptName: 'Trouble Brewing',
+  },
+};
+
+export const publicSquareActiveWorkflowProjectionUpdate: ProjectionUpdateMessage<
+  PublicProjection,
+  'public'
+> = {
+  type: 'projection_update',
+  sessionId: 'public-square-placeholder',
+  stream: 'public',
+  revision: 2,
+  projection: publicSquareActiveWorkflowProjection,
+};
+
 export const publicSquareProjectionUpdateSchema =
   createProjectionUpdateMessageSchema(
     z.object({
@@ -133,9 +227,40 @@ export const publicSquareProjectionUpdateSchema =
         phase: z.object({
           current: z.enum(['setup', 'day', 'night']),
         }),
-        activeNomination: z.null(),
-        activeVote: z.null(),
-        timer: z.null(),
+        activeNomination: z
+          .object({
+            nominatorSeatId: z.object({
+              kind: z.literal('seat'),
+              value: z.string(),
+            }),
+            nomineeSeatId: z.object({
+              kind: z.literal('seat'),
+              value: z.string(),
+            }),
+            isOpen: z.boolean(),
+          })
+          .nullable(),
+        activeVote: z
+          .object({
+            nomineeSeatId: z.object({
+              kind: z.literal('seat'),
+              value: z.string(),
+            }),
+            participatingSeatIds: z.array(
+              z.object({
+                kind: z.literal('seat'),
+                value: z.string(),
+              }),
+            ),
+            isOpen: z.boolean(),
+          })
+          .nullable(),
+        timer: z
+          .object({
+            isRunning: z.boolean(),
+            remainingSeconds: z.number().int().nonnegative(),
+          })
+          .nullable(),
       }),
       publicStatus: z
         .object({
@@ -153,4 +278,6 @@ export const publicSquareProjectionUpdateSchema =
   );
 
 export const publicSquareProjectionUpdateResult =
-  publicSquareProjectionUpdateSchema.safeParse(publicSquareProjectionUpdate);
+  publicSquareProjectionUpdateSchema.safeParse(
+    publicSquareActiveWorkflowProjectionUpdate,
+  );

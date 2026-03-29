@@ -5,6 +5,7 @@
   "version": "0.0.0",
   "description": "Public Town Square display application workspace.",
   "dependencies": {
+    "@clocktower-nexus/domain": "*",
     "@clocktower-nexus/protocol": "*",
     "zod": "^4.1.11"
   },
