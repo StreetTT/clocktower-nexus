@@ -79,8 +79,9 @@ Role identity and alignment are intentionally separate in the private
 Storyteller projection so later hidden-state and role-change tasks do not need
 to infer alignment implicitly from the assigned role.
 
-This task defines the private read model contract only. It does not yet add the
-projector implementation or redaction tests.
+This task establishes the private read model contract and the accompanying
+projector-focused test coverage. Extend the existing redaction regression tests
+under `tests/projectors` when private visibility boundaries change.
 
 ## Public Projection
 
@@ -104,9 +105,10 @@ The public projection excludes Storyteller-only fields by design:
 - no seat, player, or session notes
 - no private player collection separate from the public seat layout
 
-This task defines the public read model contract only. It does not yet add the
-projector implementation or the explicit redaction comparison tests that will
-lock the boundary down.
+This task establishes the public read model contract and the explicit redaction
+comparison tests that lock the public boundary down. Extend the existing
+projector coverage under `tests/projectors` when new visible or hidden fields
+are added.
 
 The selected script is intentionally limited here to a minimal public summary.
 Richer script-reference data such as characters, counts, travellers, and

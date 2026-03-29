@@ -281,3 +281,9 @@ export const publicSquareProjectionUpdateResult =
   publicSquareProjectionUpdateSchema.safeParse(
     publicSquareActiveWorkflowProjectionUpdate,
   );
+
+if (!publicSquareProjectionUpdateResult.success) {
+  throw new Error(
+    'Public square placeholder projection update sample must satisfy the public projection update schema.',
+  );
+}
