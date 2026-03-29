@@ -1,1 +1,15 @@
-export type { DomainProjectorsModuleMarker } from './src/projectors/index.js';
+export type {
+  DomainProjectorsModuleMarker,
+  StorytellerNominationProjection,
+  StorytellerPlayerProjection,
+  StorytellerProjection,
+  StorytellerPublicStatusProjection,
+  StorytellerReminderProjection,
+  StorytellerRoleProjection,
+  StorytellerSeatProjection,
+  StorytellerSelectedScriptProjection,
+  StorytellerSessionProjection,
+  StorytellerTimerProjection,
+  StorytellerVoteProjection,
+  StorytellerWorkflowProjection,
+} from './src/projectors/index.js';

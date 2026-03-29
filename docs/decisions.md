@@ -103,3 +103,26 @@ that choice could otherwise be lost in chat history or commit messages.
 - `Notes for future tasks`: Evolve the payload if needed, but do not rename the
   core selection action unless the underlying domain action changes.
 - `Revisit when`: script ingestion and selection workflows become more concrete.
+
+## D-0006: The Storyteller projection is seat-centric overall but keeps hidden artifacts on player views
+
+- `Status`: Active
+- `Date`: 2026-03-29
+- `Decision`: The private `StorytellerProjection` should be organized around an
+  ordered seat layout, while hidden gameplay artifacts such as role
+  assignments, reminder markers, and player notes remain attached to player
+  views rather than seat views.
+- `Reason`: The console's primary interaction model is the seat circle, so the
+  projection should be seat-centric overall. At the same time, keeping hidden
+  artifacts on player views preserves their ownership semantics more clearly as
+  occupancy, reminder, and role workflows evolve.
+- `Affects`: Task 1.2.8, Task 1.2.9, Task 1.2.10, Task 2.2.1, Task 2.2.4, Task
+  2.2.5, Task 2.2.6, Task 2.3.1, Task 3.1.4, Task 3.2.2, Task 3.2.4, Task
+  3.3.6, Task 3.4.3
+- `Notes for future tasks`: Keep `seats` as the ordered console layout surface.
+  Represent occupancy explicitly through seat-player links. Keep seat notes
+  seat-scoped and the session note top-level. Attach roles, reminders, and
+  player notes to player views unless a later task establishes a materially
+  different ownership rule.
+- `Revisit when`: occupancy, role assignment, and reminder models are all
+  concrete enough to prove the projection ownership rules need revision.
