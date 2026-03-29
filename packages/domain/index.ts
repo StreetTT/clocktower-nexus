@@ -23,6 +23,15 @@ export type {
 export type { DomainEventsModuleMarker } from './events.js';
 export type {
   DomainProjectorsModuleMarker,
+  PublicNominationProjection,
+  PublicProjection,
+  PublicSeatProjection,
+  PublicSelectedScriptProjection,
+  PublicSessionProjection,
+  PublicStatusProjection,
+  PublicTimerProjection,
+  PublicVoteProjection,
+  PublicWorkflowProjection,
   StorytellerAlignmentProjection,
   StorytellerNominationProjection,
   StorytellerPlayerProjection,

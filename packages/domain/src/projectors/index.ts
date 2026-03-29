@@ -1,4 +1,15 @@
 export type {
+  PublicNominationProjection,
+  PublicProjection,
+  PublicSeatProjection,
+  PublicSelectedScriptProjection,
+  PublicSessionProjection,
+  PublicStatusProjection,
+  PublicTimerProjection,
+  PublicVoteProjection,
+  PublicWorkflowProjection,
+} from './public-projection.js';
+export type {
   StorytellerAlignmentProjection,
   StorytellerNominationProjection,
   StorytellerPlayerProjection,

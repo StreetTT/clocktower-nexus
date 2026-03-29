@@ -148,3 +148,26 @@ that choice could otherwise be lost in chat history or commit messages.
 - `Revisit when`: canonical role-assignment state and storyteller projection
   payloads are implemented deeply enough to confirm whether any additional
   alignment states or exceptions are needed.
+
+## D-0008: Selected script identity is public session context, but detailed script reference data is deferred
+
+- `Status`: Active
+- `Date`: 2026-03-29
+- `Decision`: The public projection should include the selected script as
+  public-safe session context, but Task 1.2.9 should expose only a minimal
+  selected-script summary with `scriptId` and `scriptName`.
+- `Reason`: The chosen script is useful shared context for players and the
+  public display, but richer script metadata such as character lists, counts,
+  travellers, and night-order reference should not be guessed early before the
+  later display and script-reference tasks define exactly how that information
+  will be presented.
+- `Affects`: Task 1.2.9, Task 2.3.2, Task 3.2.4, Task 4.2.1, Task 4.2.2, Task
+  4.2.4, Task 4.2.5, Task 4.2.6
+- `Notes for future tasks`: Keep selected script identity in the public
+  projection. Grow it later through a dedicated public script-reference shape
+  instead of attaching ad hoc script metadata directly to seats or unrelated
+  workflow fields. Do not treat script identity itself as Storyteller-only
+  private data.
+- `Revisit when`: public script display requirements are concrete enough to
+  define characters, counts, travellers, and night-order information as stable
+  public projection fields.

@@ -77,7 +77,38 @@ Storyteller projection so later hidden-state and role-change tasks do not need
 to infer alignment implicitly from the assigned role.
 
 This task defines the private read model contract only. It does not yet add the
-projector implementation, public projection contract, or redaction tests.
+projector implementation or redaction tests.
+
+## Public Projection
+
+The domain package also defines a shared-screen-safe public read model under
+`@clocktower-nexus/domain/projectors`.
+
+`PublicProjection` is intentionally public by inclusion, not by subtraction:
+
+- `session` carries revision-aware public session metadata
+- `seats` exposes only visible seat state such as display name, life state,
+  ghost-vote availability, nomination state, and vote participation
+- `workflow` groups public phase, nomination, vote, and timer state
+- `publicStatus` stays top-level for banner-style public messaging
+- `selectedScript` carries a minimal public-safe script summary for shared
+  session context
+
+The public projection excludes Storyteller-only fields by design:
+
+- no roles or alignments
+- no reminders
+- no seat, player, or session notes
+- no private player collection separate from the public seat layout
+
+This task defines the public read model contract only. It does not yet add the
+projector implementation or the explicit redaction comparison tests that will
+lock the boundary down.
+
+The selected script is intentionally limited here to a minimal public summary.
+Richer script-reference data such as characters, counts, travellers, and
+night-order information belongs to later public display and script-reference
+tasks.
 
 ## Command Naming
 
