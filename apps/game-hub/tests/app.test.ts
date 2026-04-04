@@ -35,4 +35,20 @@ describe('buildGameHubApp', () => {
       status: 'running',
     });
   });
+
+  it('registers the health route through the module registry', async () => {
+    const app = await buildGameHubApp();
+    startedApps.push(app);
+
+    const response = await app.inject({
+      method: 'GET',
+      url: '/health',
+    });
+
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toEqual({
+      service: 'game-hub',
+      status: 'ok',
+    });
+  });
 });

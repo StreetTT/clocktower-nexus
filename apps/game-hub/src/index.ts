@@ -1,20 +1,17 @@
 import { buildGameHubApp } from './app.js';
-
-const DEFAULT_HOST = '127.0.0.1';
-const DEFAULT_PORT = 3000;
+import { loadGameHubConfig } from './config.js';
 
 /**
  * Starts the game hub HTTP server for local development.
  */
 async function startGameHubServer(): Promise<void> {
+  const config = loadGameHubConfig();
   const app = await buildGameHubApp();
-  const host = process.env.HOST ?? DEFAULT_HOST;
-  const port = Number(process.env.PORT ?? DEFAULT_PORT);
 
   try {
     await app.listen({
-      host,
-      port,
+      host: config.host,
+      port: config.port,
     });
   } catch (error) {
     console.error(error);
@@ -23,4 +20,7 @@ async function startGameHubServer(): Promise<void> {
   }
 }
 
-void startGameHubServer();
+void startGameHubServer().catch((error: unknown) => {
+  console.error(error);
+  process.exitCode = 1;
+});
