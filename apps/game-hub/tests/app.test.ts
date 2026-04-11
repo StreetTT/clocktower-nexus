@@ -14,14 +14,14 @@ afterEach(async () => {
 
 describe('buildGameHubApp', () => {
   it('reaches ready state and closes cleanly', async () => {
-    const app = await buildGameHubApp();
+    const app = await buildGameHubApp({ logger: false });
     startedApps.push(app);
 
     await expect(app.ready()).resolves.toBe(app);
   });
 
   it('registers the bootstrap route through the module registry', async () => {
-    const app = await buildGameHubApp();
+    const app = await buildGameHubApp({ logger: false });
     startedApps.push(app);
 
     const response = await app.inject({
@@ -37,7 +37,7 @@ describe('buildGameHubApp', () => {
   });
 
   it('registers the health route through the module registry', async () => {
-    const app = await buildGameHubApp();
+    const app = await buildGameHubApp({ logger: false });
     startedApps.push(app);
 
     const response = await app.inject({

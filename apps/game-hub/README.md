@@ -41,5 +41,22 @@ GET /health
 ```
 
 This scaffold intentionally stays minimal. It now covers server startup, typed
-config loading, and a basic health route, but later tasks still own logging,
-realtime wiring, persistence integration, and richer readiness checks.
+config loading, and a basic health route, but later tasks still own realtime
+wiring, persistence integration, and richer readiness checks.
+
+## Logging And Error Handling
+
+The game hub now uses Fastify's structured JSON logger directly.
+Request failures and startup failures are logged in machine-readable form
+without a separate custom logging layer.
+
+HTTP failures now follow a centralized shared-envelope convention:
+
+- handled errors return `ok: false`
+- failure payloads live under `error`
+- request correlation is exposed through `meta.requestId`
+- unknown failures map to a generic internal server error shape
+
+The backend's thrown error model stays separate from raw transport payloads, so
+future HTTP and websocket handling can reuse the same canonical server error
+taxonomy.
