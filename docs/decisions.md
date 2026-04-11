@@ -171,3 +171,24 @@ that choice could otherwise be lost in chat history or commit messages.
 - `Revisit when`: public script display requirements are concrete enough to
   define characters, counts, travellers, and night-order information as stable
   public projection fields.
+
+## D-0009: Backend transport handling should use a small server error taxonomy mapped into shared protocol envelopes
+
+- `Status`: Active
+- `Date`: 2026-04-04
+- `Decision`: The game hub should use a small shared backend error taxonomy
+  first, with canonical server errors mapped into the existing protocol HTTP
+  and websocket envelope shapes rather than throwing raw transport payloads
+  directly.
+- `Reason`: This keeps server behavior consistent and diagnosable early without
+  over-designing a broad speculative taxonomy before most routes and socket
+  flows exist. It also lets later HTTP and websocket work share one backend
+  failure model while still reusing the protocol package's transport contracts.
+- `Affects`: Task 1.3.3, Task 1.3.4, Task 1.3.5, Task 2.1.2, Task 2.3.2
+- `Notes for future tasks`: Start with a narrow set of backend error categories
+  such as validation, transport, and internal failures. Map those into
+  `ApiErrorEnvelope` and `SocketErrorMessage` shapes at the transport boundary.
+  Do not treat protocol envelope types themselves as the canonical thrown error
+  model inside the backend.
+- `Revisit when`: the backend has enough real HTTP and websocket flows to prove
+  whether the initial server taxonomy is too narrow or too coarse.

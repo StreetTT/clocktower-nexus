@@ -7,12 +7,17 @@
   "dependencies": {
     "@clocktower-nexus/domain": "*",
     "@clocktower-nexus/protocol": "*",
+    "fastify": "^5.0.0",
     "zod": "^4.1.11"
   },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.0.0"
+  },
   "scripts": {
-    "dev": "node -e \"console.log('Game hub dev server wiring will be added in Task 1.3.1.')\"",
-    "build": "node -e \"console.log('Game hub build wiring will be added alongside the backend scaffold.')\"",
-    "test": "node -e \"console.log('Game hub tests will be added once backend behavior exists.')\"",
+    "dev": "node --watch --import tsx src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc -p tsconfig.json"
   }
